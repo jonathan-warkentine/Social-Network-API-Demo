@@ -5,6 +5,19 @@ const reactionSchema = new Schema({
   reactionID: {
     type: mongoose.ObjectId,
     default: mongoose.Types.ObjectId()
+  },
+  reactionBody: {
+    type: String,
+    required: true,
+    maxlength: 280
+  },
+  username: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 });
 
@@ -23,6 +36,12 @@ const thoughtSchema = new Schema({
     ref: 'User',
     required: true
   },
+  reactions: {
+    type: [reactionSchema]
+  }
 });
+
+//virtual: reactionCount
+
 
 const Thought = mongoose.model('Thought', thoughtSchema);
