@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const { Schema, Type } = mongoose;
+const { Schema, Types } = require('mongoose');
 
 const reactionSchema = new Schema({
-  reactionID: {
-    type: mongoose.ObjectId,
-    default: mongoose.Types.ObjectId()
+  reaction_id: {
+    type: Types.ObjectId,
+    default: Types.ObjectId(),
   },
   reactionBody: {
     type: String,
@@ -32,7 +32,7 @@ const thoughtSchema = new Schema({
     default: Date.now
   },
   username: {
-    type: Schema.Types.ObjectId,
+    type: String,
     ref: 'User',
     required: true
   },
@@ -45,3 +45,5 @@ const thoughtSchema = new Schema({
 
 
 const Thought = mongoose.model('Thought', thoughtSchema);
+
+module.exports = Thought;
